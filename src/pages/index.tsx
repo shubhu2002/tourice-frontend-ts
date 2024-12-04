@@ -15,18 +15,16 @@ export default function Home() {
   const { setConfirmBooking } = useAppStore();
   useEffect(() => {
     setConfirmBooking(false);
-  }, []);
+  }, [setConfirmBooking]);
   return (
     <Layout>
-      <>
-        <Hero />
-        <Service />
-        <FeaturedTour />
-        <Holiday />
-        <Testimonials />
-        <Offers />
-        <Subscribes />
-      </>
+      <Hero />
+      <Service />
+      <FeaturedTour />
+      <Holiday />
+      <Testimonials />
+      <Offers />
+      <Subscribes />
     </Layout>
   );
 }

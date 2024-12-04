@@ -1,11 +1,15 @@
-import { AxiosError } from "axios";
-import { IndianRupeeIcon, Star } from "lucide-react";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
+import { AxiosError } from "axios";
+import { IndianRupeeIcon, Star } from "lucide-react";
+
 import type { BookingProps, TourCardPops } from "~/types";
+import { useAppStore } from "~/store";
 import { apiInstance } from "~/utils";
 
 const Booking = ({ tour }: { tour: TourCardPops }) => {
+  const { setLoading, setConfirmBooking } = useAppStore();
+
   const today = React.useMemo(() => new Date(), []);
   const tyear = today.getFullYear();
   const tmonth = today.getMonth() + 1;
@@ -36,6 +40,7 @@ const Booking = ({ tour }: { tour: TourCardPops }) => {
 
   const handleSubmit = async () => {
     try {
+      setLoading(true);
       const { data } = await apiInstance.post<{
         status: boolean;
         data: BookingProps;
@@ -44,12 +49,24 @@ const Booking = ({ tour }: { tour: TourCardPops }) => {
         totalAmount: totalAmt,
       });
       if (data.status) {
+        setLoading(false);
         toast.success("Booking Confirmed !!");
+        setBookingData({
+          ...bookingData,
+          fullName: "",
+          guests: 0,
+          phone: "",
+          date: "",
+          totalAmount: 0,
+        });
+        setConfirmBooking(true);
       }
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
+        setLoading(false);
         toast.error(error.message);
       }
+      setLoading(false);
       console.log(error);
     }
   };

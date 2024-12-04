@@ -1,4 +1,5 @@
 import { AxiosError } from "axios";
+import { LucideLoader } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -7,11 +8,13 @@ import { apiInstance } from "~/utils";
 
 const Subscribes = () => {
   const [email, setEmail] = useState<string>("");
-
+  const [loading, setLoading] = useState<boolean>(false);
   const handleSubmit = async () => {
     try {
+      setLoading(true);
       if (!email) {
         toast.error("Invalid or empty email !!");
+        setLoading(false);
       }
       const { data } = await apiInstance.post<{
         status: boolean;
@@ -22,11 +25,13 @@ const Subscribes = () => {
       if (data.status) {
         toast.success("Congrats, You are now Subscribed !");
         setEmail("");
+        setLoading(false);
       }
     } catch (error) {
       if (error instanceof AxiosError) {
         console.log(error.message);
       }
+      setLoading(false);
     }
   };
   return (
@@ -44,8 +49,15 @@ const Subscribes = () => {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-          <button className="bottone1 !rounded !p-2" onClick={handleSubmit}>
-            <strong>Subscribe</strong>
+          <button
+            className={`bottone1 flex min-w-[104px] justify-center !rounded ${loading ? "" : "!p-2"}`}
+            onClick={handleSubmit}
+          >
+            {loading ? (
+              <LucideLoader color="white" className="animate-spin" size={23} />
+            ) : (
+              <strong>Subscribe</strong>
+            )}
           </button>
         </div>
         <p className="px-4 text-xs md:w-96 md:px-0">

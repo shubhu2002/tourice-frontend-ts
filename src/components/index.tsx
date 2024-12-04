@@ -4,6 +4,8 @@ import Latest from "./shared/Latest";
 import TourCard from "./shared/Tour-Card";
 import SearchBar from "./shared/SearchBar";
 import Booking from "./shared/Booking";
+import Loader from "./shared/Loader";
+import Confirmed from "./shared/Confirmed";
 
 import Offers from "./Offers";
 import Testimonials from "./Testimonials";
@@ -27,6 +29,8 @@ export {
   TourCard,
   SearchBar,
   Booking,
+  Loader,
+  Confirmed,
   Navbar,
   Footer,
 };

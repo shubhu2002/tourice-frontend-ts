@@ -8,8 +8,14 @@ import {
   Offers,
   Subscribes,
 } from "~/components";
+import { useEffect } from "react";
+import { useAppStore } from "~/store";
 
 export default function Home() {
+  const { setConfirmBooking } = useAppStore();
+  useEffect(() => {
+    setConfirmBooking(false);
+  }, []);
   return (
     <Layout>
       <>

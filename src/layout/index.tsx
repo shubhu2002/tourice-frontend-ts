@@ -2,7 +2,8 @@ import Head from "next/head";
 import { Merriweather, Borel } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 
-import { Footer, Navbar } from "~/components";
+import { Footer, Navbar, Loader } from "~/components";
+import { useAppStore } from "~/store";
 
 const merriweather_font = Merriweather({
   subsets: ["latin"],
@@ -16,6 +17,7 @@ const borel_font = Borel({
 });
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
+  const { loading } = useAppStore();
   return (
     <>
       <Head>
@@ -26,6 +28,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       <div
         className={`min-h-screen w-full bg-yellow-50 text-black transition-all duration-150 ease-out dark:bg-stone-900 dark:text-lime-50 ${merriweather_font.className} ${borel_font.variable}`}
       >
+        {loading && <Loader />}
         <Navbar />
         {children}
         <Toaster

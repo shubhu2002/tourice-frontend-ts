@@ -1,0 +1,93 @@
+@import url("custom-scrollbar.css");
+@import url("lenis-scroll.css");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  letter-spacing: 1px;
+  scroll-behavior: smooth;
+}
+
+.txt_field {
+  transition: max-height 0.5s ease-in-out;
+}
+
+.overlay::after,
+.overlay::before {
+  content: "";
+  position: absolute;
+  top: 158px;
+  right: 0;
+  background-color: #d9f99d;
+  width: 30px;
+  height: 30px;
+}
+
+.overlay::after {
+  border-radius: 0 20px 0 0;
+  background-color: white;
+}
+
+.txt_field span::before {
+  content: " ";
+  position: absolute;
+  top: 47px;
+  left: 0;
+  width: 0%;
+  height: 1px;
+  background: #2691d9;
+}
+
+.txt_field input:focus ~ label,
+.txt_field input:valid ~ label {
+  top: 2px;
+  color: #2691d9;
+}
+
+.txt_field input:focus ~ span::before,
+.txt_field input:valid ~ span::before {
+  width: 100%;
+}
+
+.latestBook {
+  animation: color 2s infinite;
+}
+
+@keyframes color {
+  0% {
+    color: yellow;
+  }
+  50% {
+    color: blue;
+  }
+  100% {
+    color: white;
+  }
+}
+
+.bottone1 {
+  padding: 4px 12px;
+  border-radius: 8px;
+  background: rgb(251, 146, 60);
+  border: none;
+  font-size: 12px;
+  line-height: 16px;
+  font-family: inherit;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.bottone1:hover {
+  box-shadow: 7px 5px 56px -14px rgb(251, 146, 60);
+}
+
+.bottone1:active {
+  transform: scale(0.97);
+  box-shadow: 7px 5px 56px -10px rgb(251, 146, 60);
+}

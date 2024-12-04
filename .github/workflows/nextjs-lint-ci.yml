@@ -1,0 +1,46 @@
+name: CI
+
+on: [push, pull_request]
+
+env:
+  MY_ENV_VAR: "https://fake.com"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
+
+      - name: Print Node.js Version
+        run: node -v
+
+      - name: Print Npm Version
+        run: npm -v
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Print pnpm Version
+        run: pnpm -v
+
+      - name: Print PATH
+        run: echo $PATH
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Typecheck
+        run: pnpm run typecheck
+
+      - name: Lint
+        run: pnpm run lint
+
+      - name: Print Environment Variable
+        run: echo $MY_ENV_VAR

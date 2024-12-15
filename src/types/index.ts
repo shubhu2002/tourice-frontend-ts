@@ -21,7 +21,17 @@ export type BookingProps = {
 };
 
 export type UserProps = {
+  _id?: string;
   username?: string;
   email: string;
   password: string;
+};
+
+export type LoginResProps = {
+  status: boolean;
+  token: string;
+  isAdmin: boolean;
+  id: string;
+  username: string;
+  email: string;
 };

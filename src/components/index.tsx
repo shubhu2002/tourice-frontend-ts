@@ -13,13 +13,16 @@ import Holiday from "./Holiday";
 import Service from "./Service";
 import Hero from "./Hero";
 import FeaturedTour from "./FeaturedTour";
+import Login from "./shared/Login";
 
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+
 export {
   Hero,
   Service,
   FeaturedTour,
+  Login,
   Holiday,
   Header,
   Testimonials,

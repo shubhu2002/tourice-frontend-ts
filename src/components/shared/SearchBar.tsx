@@ -46,7 +46,7 @@ const SearchBar = () => {
       transition={{ duration: 0.5 }}
       initial={{ width: "25%" }}
       whileHover={{ width: "40%" }}
-      className="relative mt-4 flex w-5/6 flex-row justify-between rounded-lg bg-white text-sm dark:bg-[rgba(0,0,0,0.8)] md:w-2/6"
+      className="relative mt-4 flex w-5/6 flex-row justify-between rounded-lg bg-white text-sm dark:bg-[rgba(0,0,0,0.8)] md:w-2/6 border "
       ref={modalRef}
     >
       <div className="flex w-full items-center gap-6 px-4">

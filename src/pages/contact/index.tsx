@@ -3,8 +3,15 @@ import Layout from "~/layout";
 
 import { Header, Subscribes } from "~/components";
 import { ImageData } from "~/constants";
+import { useEffect } from "react";
+import { signOut, useSession } from "next-auth/react";
+import { getSession } from "next-auth/react";
 
 const Contact = () => {
+  const { data: session } = useSession();
+  useEffect(() => {
+    console.log(session, "session");
+  }, [session]);
   return (
     <Layout>
       <section className="w-full">

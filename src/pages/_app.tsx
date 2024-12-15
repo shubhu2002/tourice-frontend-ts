@@ -1,11 +1,17 @@
+import { SessionProvider } from "next-auth/react";
+import { type Session } from "next-auth";
 import { type AppType } from "next/app";
+import { useEffect, useState } from "react";
+
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Lenis from "lenis";
 
 import "~/styles/globals.css";
-import { useEffect, useState } from "react";
 
-const MyApp: AppType = ({ Component, pageProps }) => {
+const MyApp: AppType<{ session: Session | null }> = ({
+  Component,
+  pageProps: { session, ...pageProps },
+}) => {
   useEffect(() => {
     const lenis = new Lenis();
 
@@ -20,9 +26,11 @@ const MyApp: AppType = ({ Component, pageProps }) => {
 
   const [queryClient] = useState(() => new QueryClient());
   return (
-    <QueryClientProvider client={queryClient}>
-      <Component {...pageProps} />
-    </QueryClientProvider>
+    <SessionProvider session={session}>
+      <QueryClientProvider client={queryClient}>
+        <Component {...pageProps} />
+      </QueryClientProvider>
+    </SessionProvider>
   );
 };
 

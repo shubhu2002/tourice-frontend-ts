@@ -5,13 +5,17 @@ import { ImageData } from "~/constants";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { useAppStore } from "~/store";
+import { useSession } from "next-auth/react";
 
 const { logo } = ImageData;
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const pathname = usePathname();
-  console.log(pathname);
+  const { data: session } = useSession();
+
+  const { setLoginModal } = useAppStore();
   const handleMenu = () => {
     setShowMenu(!showMenu);
   };
@@ -55,11 +59,11 @@ const Navbar = () => {
           })}
         </nav>
         <div className="mr-4 flex items-center gap-2 lg:gap-8">
-          <Link href="/login-register">
+          <div onClick={() => !session && setLoginModal(true)}>
             <button className="bottone1 text-white md:px-7 md:py-2 md:text-base">
-              <strong>LogIn</strong>
+              <strong>{session ? session.user.username : "LogIn"}</strong>
             </button>
-          </Link>
+          </div>
           <Menu size={32} className="md:hidden" onClick={handleMenu} />
           <DarkTheme />
         </div>

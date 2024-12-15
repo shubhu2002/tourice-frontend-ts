@@ -19,3 +19,9 @@ export type BookingProps = {
   date: string;
   totalAmount: number;
 };
+
+export type UserProps = {
+  username?: string;
+  email: string;
+  password: string;
+};

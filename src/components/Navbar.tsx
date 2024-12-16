@@ -63,7 +63,7 @@ const Navbar = () => {
                   alt="avatar"
                   height={32}
                   width={32}
-                  className="rounded-full border border-black"
+                  className="rounded-full border-2 border-white/90"
                 />
                 <div className="absolute right-0 top-10 z-[9999] flex min-w-32 flex-col items-center justify-center gap-1 rounded-lg bg-black/90 p-1 text-[14px] text-white opacity-0 backdrop-blur-lg transition-all duration-300 group-hover:opacity-100">
                   <span className="flex w-full items-center justify-start gap-2 rounded-lg py-1.5 pl-2 hover:bg-white/15">

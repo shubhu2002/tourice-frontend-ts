@@ -26,7 +26,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div
-        className={`min-h-screen w-full bg-yellow-50 text-black transition-all duration-150 ease-out dark:bg-stone-900 dark:text-lime-50 ${merriweather_font.className} ${borel_font.variable}`}
+        className={`min-h-screen w-full bg-yellow-50 text-black transition-all duration-150 ease-out dark:bg-[#121212] dark:text-lime-50 ${merriweather_font.className} ${borel_font.variable}`}
       >
         {loading && <Loader />}
         {loginModal && <Login />}

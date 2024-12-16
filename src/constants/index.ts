@@ -120,3 +120,10 @@ export const testimonialsData = [
       "I think this is the best traveller service i have ever tried and I also recommended it to you",
   },
 ];
+
+export const NavMenus = [
+  { title: "Home", url: "/" },
+  { title: "Tours", url: "/tour" },
+  { title: "About", url: "/about" },
+  { title: "Contacts", url: "/contact" },
+];

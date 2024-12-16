@@ -40,13 +40,13 @@
   left: 0;
   width: 0%;
   height: 1px;
-  background: #2691d9;
+  background: rgb(251, 146, 60);
 }
 
 .txt_field input:focus ~ label,
 .txt_field input:valid ~ label {
   top: 2px;
-  color: #2691d9;
+  color: rgb(251, 146, 60);
 }
 
 .txt_field input:focus ~ span::before,
@@ -73,7 +73,7 @@
 .bottone1 {
   padding: 4px 12px;
   border-radius: 8px;
-  background: rgb(251, 146, 60);
+  background: #fb923c;
   border: none;
   font-size: 12px;
   line-height: 16px;
@@ -81,6 +81,9 @@
   text-align: center;
   cursor: pointer;
   transition: 0.4s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .bottone1:hover {

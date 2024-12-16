@@ -1,29 +1,27 @@
-import React, { useState, useContext } from "react";
-import { LucideLoader, XCircle } from "lucide-react";
-import { ImageData } from "~/constants";
-// import { AuthContext } from "../../context/AuthContext";
-import { apiInstance } from "~/utils";
-import toast from "react-hot-toast";
-import axios, { AxiosError } from "axios";
-import Link from "next/link";
+import React, { useState } from "react";
+import { signIn } from "next-auth/react";
 import Image from "next/image";
-import type { UserProps } from "~/types";
 import { motion } from "framer-motion";
+import toast from "react-hot-toast";
+import { LucideLoader, XCircle } from "lucide-react";
+import { AxiosError } from "axios";
+
+import { ImageData } from "~/constants";
+import { apiInstance, validations } from "~/utils";
+import type { UserProps } from "~/types";
 import { useAppStore } from "~/store";
-import { signIn, useSession } from "next-auth/react";
 
 const Login = () => {
   const { setLoginModal } = useAppStore();
-  const [show, setShow] = useState(false);
+  const [page, setPage] = useState<boolean>(true);
   const [loading, setLoading] = useState<boolean>(false);
+
   const [credentials, setCredentials] = useState<UserProps>({
     username: "",
     email: "",
     password: "",
   });
-    
-  //   const { dispatch } = useContext(AuthContext);
-  //   const navigate = useNavigate();
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setCredentials((prev) => ({ ...prev, [name]: value }));
@@ -31,7 +29,17 @@ const Login = () => {
 
   const handleSignUp = async () => {
     try {
+      if (
+        !validations(
+          credentials.email,
+          credentials.password,
+          credentials.username,
+        )
+      ) {
+        return;
+      }
       setLoading(true);
+
       const { data } = await apiInstance.post<{
         status: boolean;
         newUser: UserProps;
@@ -41,10 +49,8 @@ const Login = () => {
         toast.success("Registered Successfull !");
         setLoading(false);
         setCredentials({ username: "", email: "", password: "" });
+        setLoginModal(false);
       }
-
-      //   dispatch({ type: "REGISTER_SUCCESS" });
-      //   navigate("/login-register");
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         toast.error(error.message);
@@ -57,53 +63,47 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       setLoading(true);
+
+      if (!credentials.email || !credentials.password) {
+        toast.error("Empty Fields !!");
+        return;
+      }
+
       const result = await signIn("credentials", {
-        redirect: true,
-        callbackUrl: "/contact",
+        redirect: false,
         email: credentials.email,
         password: credentials.password,
       });
-      // const { data } = await apiInstance.post<{
-      //   status: boolean;
-      //   newUser: UserProps;
-      // }>("/auth/register", credentials);
-      console.log(result);
-      if (result?.error) {
-        toast.error(result.error);
+
+      if (result?.status === 404 || result?.status === 401) {
+        toast.error("Unauthorized user !");
+        return;
       } else {
         toast.success("Logged in successfully!");
-        setLoginModal(false); // Close modal on successful login
+        setLoginModal(false);
       }
-
-      // if (data.status) {
-      //   toast.success("Registered Successfull !");
-      //   setLoading(false);
-      //   setCredentials({ username: "", email: "", password: "" });
-      // }
     } catch (error) {
       console.log(error);
+      setLoading(false);
       toast.error("An error occurred during login.");
     } finally {
       setLoading(false);
     }
   };
-  const handlePage = () => {
-    setShow(!show);
-  };
 
   return (
-    <main className="grid h-screen w-full place-items-center">
+    <main className="fixed z-[999] grid h-screen w-full place-items-center bg-black/60 backdrop-blur-md">
       <motion.section
         initial={{ scale: 0.6, opacity: 0 }}
         whileInView={{ scale: 1, opacity: 100 }}
         transition={{ duration: 0.35 }}
-        className="relative z-[9999] flex w-5/6 flex-col rounded-xl bg-secondaryBG backdrop-blur md:w-3/5 md:flex-row"
+        className="relative z-[9999] flex w-5/6 flex-col rounded-xl bg-secondaryBG p-1 backdrop-blur md:w-3/5 md:flex-row"
       >
         <div onClick={() => setLoginModal(false)}>
           <XCircle
             size={32}
             strokeWidth={1}
-            className="absolute right-2 top-2 z-50 cursor-pointer text-lime-50 md:text-black dark:md:text-white"
+            className="absolute right-2 top-2 z-50 cursor-pointer text-lime-50 hover:scale-105 md:text-black dark:md:text-white"
           />
         </div>
         <div className="relative flex-1">
@@ -126,19 +126,19 @@ const Login = () => {
 
         <div className="flex w-full flex-1 flex-col items-center py-7">
           <h1 className="relative w-full text-center text-2xl font-bold">
-            {show ? "LogIn" : "SignUp"}
+            {page ? "LogIn" : "SignUp"}
             <hr className="dark:bg-textLight absolute left-2/4 top-10 h-[5px] w-7 -translate-x-1/2 rounded-2xl bg-black dark:bg-lime-50" />
           </h1>
           <div className="w-5/6">
             <div
               className={`${
-                show ? "max-h-0 overflow-hidden border-none" : "max-h-36"
+                page ? "max-h-0 overflow-hidden border-none" : "max-h-36"
               } txt_field relative my-5 border-b border-gray-500`}
             >
               <input
                 type="text"
                 name="username"
-                required={!show}
+                required={!page}
                 value={credentials.username}
                 className="h-12 w-full border-none bg-inherit outline-none"
                 onChange={handleChange}
@@ -192,38 +192,25 @@ const Login = () => {
             </div>
             <div className="flex justify-evenly py-2">
               <button
-                className={`${
-                  show ? "bg-slate-300" : "bg-emerald-300"
-                } flex w-5/12 items-center justify-center rounded-2xl py-2 dark:text-black ${loading && "opacity-60"}`}
-                disabled={show}
-                onClick={handleSignUp}
+                className={`bottone1 w-full !bg-emerald-300 !py-2 !text-lg !font-bold uppercase hover:shadow-[7px_5px_56px_-14px_rgba(110,231,183,0.5)] disabled:cursor-not-allowed disabled:opacity-30 dark:text-black ${loading && "opacity-60"}`}
+                // disabled={page}
+                onClick={!page ? handleSignUp : handleLogin}
               >
-                {!show && loading ? (
+                {loading ? (
                   <LucideLoader className="animate-spin" />
-                ) : (
+                ) : !page ? (
                   "Sign Up"
-                )}
-              </button>
-              <button
-                className={`${
-                  show ? "bg-emerald-300" : "bg-slate-300"
-                } flex w-5/12 items-center justify-center rounded-2xl py-2 dark:text-black ${loading && "opacity-60"}`}
-                disabled={!show}
-                onClick={handleLogin}
-              >
-                {show && loading ? (
-                  <LucideLoader className="animate-spin" />
                 ) : (
-                  "Login"
+                  "LogIn"
                 )}
               </button>
             </div>
           </div>
           <div
             className="mt-4 text-sm text-blue-500 hover:underline"
-            onClick={handlePage}
+            onClick={() => setPage(!page)}
           >
-            {show ? "New User Register !!" : "Already User Login !!"}
+            {page ? "New User Register !!" : "Already User Login !!"}
           </div>
         </div>
       </motion.section>

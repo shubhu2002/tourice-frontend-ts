@@ -1,9 +1,9 @@
 import NextAuth, { type NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { z } from "zod";
+
 import type { LoginResProps } from "~/types";
 import { apiInstance } from "~/utils";
-
-import { z } from "zod";
 
 const LoginResponseSchema = z.object({
   status: z.boolean(),
@@ -30,12 +30,6 @@ export const authOptions: NextAuthOptions = {
             credentials,
           );
           const validatedData = LoginResponseSchema.parse(data);
-
-          if (validatedData.status) {
-            return validatedData; // Safe to return
-          }
-
-          console.log("user at", validatedData);
 
           if (validatedData.status) {
             return validatedData;

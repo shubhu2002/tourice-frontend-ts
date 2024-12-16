@@ -37,7 +37,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           toastOptions={{
             style: {
               fontFamily: merriweather_font.style.fontFamily,
-              fontWeight: 400,
+              fontWeight: 800,
               fontSize: "14px",
             },
           }}

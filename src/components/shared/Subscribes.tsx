@@ -1,21 +1,24 @@
+import { useState } from "react";
+import Image from "next/image";
+import toast from "react-hot-toast";
 import { AxiosError } from "axios";
 import { LucideLoader } from "lucide-react";
-import Image from "next/image";
-import { useState } from "react";
-import toast from "react-hot-toast";
+
 import { ImageData } from "~/constants";
-import { apiInstance } from "~/utils";
+import { apiInstance, validateEmail } from "~/utils";
 
 const Subscribes = () => {
   const [email, setEmail] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
-  const handleSubmit = async () => {
+
+  const handleSubscribe = async () => {
     try {
-      setLoading(true);
-      if (!email) {
+      if (!email || !validateEmail(email)) {
         toast.error("Invalid or empty email !!");
-        setLoading(false);
+        return;
       }
+      setLoading(true);
+
       const { data } = await apiInstance.post<{
         status: boolean;
         data: { email: string };
@@ -40,7 +43,7 @@ const Subscribes = () => {
         <h1 className="w-full text-xl font-bold md:w-80">
           subscribe now to get useful traveling information
         </h1>
-        <div className="dark:bg-primaryDark mx-auto flex h-12 w-[350px] items-center justify-between bg-white px-1 md:mt-4 md:h-9 md:w-96">
+        <div className="dark:bg-primaryDark mx-auto flex h-12 w-[350px] items-center justify-between rounded-lg border border-black/30 bg-white px-1 md:mt-4 md:h-10 md:w-96">
           <input
             type="email"
             placeholder="Enter Your Email"
@@ -50,8 +53,8 @@ const Subscribes = () => {
             required
           />
           <button
-            className={`bottone1 flex min-w-[104px] justify-center !rounded ${loading ? "" : "!p-2"}`}
-            onClick={handleSubmit}
+            className={`bottone1 flex min-w-[104px] justify-center !rounded-md ${loading ? "" : "!p-2"}`}
+            onClick={handleSubscribe}
           >
             {loading ? (
               <LucideLoader color="white" className="animate-spin" size={23} />

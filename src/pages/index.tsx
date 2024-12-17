@@ -1,4 +1,7 @@
+import { useEffect } from "react";
+
 import Layout from "~/layout";
+import { useAppStore } from "~/store";
 import {
   Hero,
   Service,
@@ -8,8 +11,6 @@ import {
   Offers,
   Subscribes,
 } from "~/components";
-import { useEffect } from "react";
-import { useAppStore } from "~/store";
 
 export default function Home() {
   const { setConfirmBooking } = useAppStore();

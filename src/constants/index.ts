@@ -94,7 +94,7 @@ export const offerData = [
 export const testimonialsData = [
   {
     id: 1,
-    name: "Suraj Gaud",
+    name: "Abhiyank Pal",
     tag: "Traveller",
     quote:
       "Thanks to Tourice i can now realize my dream of travelling around the world",
@@ -114,9 +114,16 @@ export const testimonialsData = [
   },
   {
     id: 4,
-    name: "Akash Tomar",
+    name: "Devesh Gaur",
     tag: "Photographer",
     quote:
       "I think this is the best traveller service i have ever tried and I also recommended it to you",
   },
+];
+
+export const NavMenus = [
+  { title: "Home", url: "/" },
+  { title: "Tours", url: "/tours" },
+  { title: "About", url: "/about" },
+  { title: "Contacts", url: "/contact" },
 ];

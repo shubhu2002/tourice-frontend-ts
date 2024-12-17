@@ -1,6 +1,6 @@
 import Image from "next/image";
-import Layout from "~/layout";
 
+import Layout from "~/layout";
 import { Header, Subscribes } from "~/components";
 import { ImageData } from "~/constants";
 
@@ -27,7 +27,7 @@ const Contact = () => {
             />
             <ul className="relative flex flex-col gap-1">
               <h1 className="text-lg">Address : </h1>
-              <li>245, Balwant Nagar</li>
+              <li>245, Basant Vihar</li>
               <li>Gwalior , Madhya Pradesh</li>
               <li>Zip Code : 474012</li>
             </ul>

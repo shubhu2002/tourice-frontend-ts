@@ -18,7 +18,10 @@ const config = {
     defaultLocale: "en",
   },
   images: {
-    remotePatterns: [{ hostname: "firebasestorage.googleapis.com" }],
+    remotePatterns: [
+      { hostname: "firebasestorage.googleapis.com" },
+      { hostname: "avatar.iran.liara.run" },
+    ],
   },
   transpilePackages: ["geist"],
 };

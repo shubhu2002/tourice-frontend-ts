@@ -2,7 +2,7 @@ import Head from "next/head";
 import { Merriweather, Borel } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 
-import { Footer, Navbar, Loader } from "~/components";
+import { Footer, Navbar, Loader, Login } from "~/components";
 import { useAppStore } from "~/store";
 
 const merriweather_font = Merriweather({
@@ -17,7 +17,7 @@ const borel_font = Borel({
 });
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-  const { loading } = useAppStore();
+  const { loading, loginModal } = useAppStore();
   return (
     <>
       <Head>
@@ -26,9 +26,10 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div
-        className={`min-h-screen w-full bg-yellow-50 text-black transition-all duration-150 ease-out dark:bg-stone-900 dark:text-lime-50 ${merriweather_font.className} ${borel_font.variable}`}
+        className={`min-h-screen w-full bg-yellow-50 text-black transition-all duration-150 ease-out dark:bg-[#121212] dark:text-lime-50 ${merriweather_font.className} ${borel_font.variable}`}
       >
         {loading && <Loader />}
+        {loginModal && <Login />}
         <Navbar />
         {children}
         <Toaster
@@ -36,7 +37,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           toastOptions={{
             style: {
               fontFamily: merriweather_font.style.fontFamily,
-              fontWeight: 400,
+              fontWeight: 600,
               fontSize: "14px",
             },
           }}

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+
 import { offerData } from "~/constants";
 
 const Offers = () => {
@@ -14,19 +15,19 @@ const Offers = () => {
           return (
             <div
               key={item.id}
-              className="flex items-center rounded-md bg-white p-2 dark:bg-[rgba(255,255,255,0.1)]"
+              className="flex items-center rounded-md bg-white p-1.5 dark:bg-[rgba(255,255,255,0.1)]"
             >
               <Image
                 src={item.imgSrc}
                 height={1000}
                 alt="img"
                 width={100}
-                className="h-24"
+                className="h-24 rounded-md"
               />
               <div className="flex max-h-[96] flex-col pl-4">
                 <p className="mb-2 w-44 text-xs">{item.desc}</p>
                 <Link
-                  href="/tour"
+                  href="/tours"
                   className="mb-2 cursor-pointer text-sm font-bold text-bookBtn hover:text-black dark:hover:text-white"
                 >
                   Book Now

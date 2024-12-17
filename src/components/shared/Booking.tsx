@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
 import { AxiosError } from "axios";
 import { IndianRupeeIcon, Star } from "lucide-react";
@@ -8,7 +9,8 @@ import { useAppStore } from "~/store";
 import { apiInstance } from "~/utils";
 
 const Booking = ({ tour }: { tour: TourCardPops }) => {
-  const { setLoading, setConfirmBooking } = useAppStore();
+  const { data: session } = useSession();
+  const { setLoading, setConfirmBooking, setLoginModal } = useAppStore();
 
   const today = React.useMemo(() => new Date(), []);
   const tyear = today.getFullYear();
@@ -16,8 +18,8 @@ const Booking = ({ tour }: { tour: TourCardPops }) => {
   const tdate = today.getDate();
 
   const [bookingData, setBookingData] = useState<BookingProps>({
-    userId: "shubhutest",
-    userEmail: "shubhu254@gmail.com",
+    userId: session?.user.username ?? "",
+    userEmail: session?.user.email ?? "",
     fullName: "",
     phone: "",
     guests: 0,
@@ -40,7 +42,19 @@ const Booking = ({ tour }: { tour: TourCardPops }) => {
 
   const handleSubmit = async () => {
     try {
+      if (!session) {
+        setLoginModal(true);
+        return;
+      }
+      const { fullName, phone, guests, date, tourName } = bookingData;
+
+      if (!fullName || !phone || !guests || !date || !tourName) {
+        toast.error("Empty fields ");
+        return;
+      }
+
       setLoading(true);
+
       const { data } = await apiInstance.post<{
         status: boolean;
         data: BookingProps;
@@ -48,9 +62,11 @@ const Booking = ({ tour }: { tour: TourCardPops }) => {
         ...bookingData,
         totalAmount: totalAmt,
       });
+
       if (data.status) {
-        setLoading(false);
         toast.success("Booking Confirmed !!");
+
+        setLoading(false);
         setBookingData({
           ...bookingData,
           fullName: "",
@@ -59,6 +75,7 @@ const Booking = ({ tour }: { tour: TourCardPops }) => {
           date: "",
           totalAmount: 0,
         });
+
         setConfirmBooking(true);
       }
     } catch (error: unknown) {

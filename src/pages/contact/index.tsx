@@ -1,17 +1,10 @@
 import Image from "next/image";
-import Layout from "~/layout";
 
+import Layout from "~/layout";
 import { Header, Subscribes } from "~/components";
 import { ImageData } from "~/constants";
-import { useEffect } from "react";
-import { signOut, useSession } from "next-auth/react";
-import { getSession } from "next-auth/react";
 
 const Contact = () => {
-  const { data: session } = useSession();
-  useEffect(() => {
-    console.log(session, "session");
-  }, [session]);
   return (
     <Layout>
       <section className="w-full">
@@ -34,7 +27,7 @@ const Contact = () => {
             />
             <ul className="relative flex flex-col gap-1">
               <h1 className="text-lg">Address : </h1>
-              <li>245, Balwant Nagar</li>
+              <li>245, Basant Vihar</li>
               <li>Gwalior , Madhya Pradesh</li>
               <li>Zip Code : 474012</li>
             </ul>

@@ -7,6 +7,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Lenis from "lenis";
 
 import "~/styles/globals.css";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,

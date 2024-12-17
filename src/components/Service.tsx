@@ -1,14 +1,14 @@
 import Image from "next/image";
 import { ImageData } from "~/constants";
 
-const { booking, cc, custom, guide } = ImageData;
-
 const Service = () => {
+  const { booking, cc, custom, guide } = ImageData;
+
   return (
     <section className="mb-16 flex w-full flex-col items-center gap-12 py-2">
-      <div>
-        <h1 className="font-Borel text-3xl mb-4">We Know Best For......</h1>
-      </div>
+      <>
+        <h1 className="font-Borel mb-4 text-3xl">We Know Best For</h1>
+      </>
       <div className="grid w-full grid-cols-2 gap-y-9 md:grid-cols-4 lg:w-[80%]">
         <SubService
           icon={booking}
@@ -41,7 +41,13 @@ const SubService = ({ icon, text, bg }: SubServiceProps) => {
       <div
         className={`flex h-28 w-28 items-center justify-center rounded-full ${bg}`}
       >
-        <Image height={1000} src={icon} alt="logos" width={65} />
+        <Image
+          height={1000}
+          src={icon}
+          alt="logos"
+          width={65}
+          className="pointer-events-none"
+        />
       </div>
       <h1 className="w-28 text-center">{text}</h1>
     </div>

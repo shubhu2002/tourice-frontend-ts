@@ -22,8 +22,7 @@ const Footer = () => {
       </div>
       <div className="mx-auto w-[90%] text-center text-sm">
         <h1 className="my-3 font-semibold tracking-widest">
-          Copyright 2023 ,Design & Developed By Shubhanshu Saxena. All Rights
-          Reserved.
+          Design & Developed By Shubhanshu Saxena.
         </h1>
       </div>
     </footer>

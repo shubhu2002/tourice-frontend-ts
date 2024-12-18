@@ -6,7 +6,7 @@ import { signOut, useSession } from "next-auth/react";
 import { Menu, LogOut, CalendarCheck2, User } from "lucide-react";
 
 import { DarkTheme } from "~/utils";
-import { ImageData, NavMenus } from "~/constants";
+import { NavMenus } from "~/constants";
 import { useAppStore } from "~/store";
 
 const Navbar = () => {
@@ -22,9 +22,9 @@ const Navbar = () => {
         <Image
           width={1000}
           height={1000}
-          src={ImageData.logo}
+          src={"/logo_crop.png"}
           alt="logo"
-          className="h-48 w-48"
+          className="ml-2 h-44 w-44 object-contain"
         />
       </div>
       <nav

@@ -23,8 +23,8 @@ const TourCard = ({ tour }: { tour: TourCardPops }) => {
             className="h-full w-full rounded-lg object-cover"
           />
         </div>
-        <div>
-          <h1 className="mb-2 text-xs font-bold md:text-base">{tour.title}</h1>
+        <div className="ml-1">
+          <h1 className="mb-2 text-xs font-medium md:text-xl">{tour.title}</h1>
           <h1 className="w-44 text-[9px] md:block md:w-56 md:text-xs">
             {tour.desc}
           </h1>

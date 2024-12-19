@@ -7,7 +7,7 @@ import { ImageData, testimonialsData } from "~/constants";
 
 const Testimonials = () => {
   return (
-    <section className="pointer-events-none relative my-12 flex w-full flex-col items-center pt-8 dark:bg-secondaryBG">
+    <section className="pointer-events-none relative mb-20 flex w-full flex-col items-center pt-8">
       <Image
         width={1000}
         height={1000}
@@ -15,10 +15,8 @@ const Testimonials = () => {
         alt="tree"
         className="absolute left-0 top-36 w-28 -rotate-[30deg] opacity-80 lg:-left-7 lg:top-0 lg:w-72"
       />
-      <h1 className="font-Borel w-full text-center text-3xl tracking-widest">
-        Our Happy Customers
-      </h1>
-      <h1 className="mb-1 mt-4 px-2 text-center text-sm">
+      <h1 className="w-full text-center text-5xl">Our Happy Customers</h1>
+      <h1 className="mb-1 mt-4 px-2 text-center text-base">
         Some testimonials from those who go travelling using our services.
       </h1>
       <div className="mx-auto flex w-[85%] p-12 lg:w-[55%]">
@@ -47,7 +45,7 @@ const Testimonials = () => {
           }}
           modules={[Autoplay, Pagination, Navigation]}
           loop={true}
-          className="mySwiper drop-shadow-2xl"
+          className="mySwiper"
         >
           {testimonialsData.map((item) => {
             return (
@@ -76,7 +74,7 @@ const Testimonials = () => {
                         ))}
                     </span>
                   </div>
-                  <p className="mb-3 mt-5 w-56 px-1 text-xs">
+                  <p className="mb-3 mt-5 w-56 px-1 text-sm font-medium">
                     &quot;{item.quote}&quot;
                   </p>
                   <Image

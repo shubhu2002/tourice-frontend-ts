@@ -8,6 +8,7 @@ export default {
       fontFamily: {
         borel: "'Borel', cursive",
         merriweather: "--font-merriweather",
+        ubuntu: "--font-ubuntu",
         // Sans: "'Open Sans', sans-serif",
         // Poppins: "'Poppins', sans-serif",
         // Roboto: "'Roboto Mono', monospace",

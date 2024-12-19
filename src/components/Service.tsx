@@ -5,9 +5,9 @@ const Service = () => {
   const { booking, cc, custom, guide } = ImageData;
 
   return (
-    <section className="mb-16 flex w-full flex-col items-center gap-12 py-2">
+    <section className="mb-20 flex w-full flex-col items-center">
       <>
-        <h1 className="font-Borel mb-4 text-3xl">We Know Best For</h1>
+        <h1 className="mb-16 text-[40px]">We Know Best For</h1>
       </>
       <div className="grid w-full grid-cols-2 gap-y-9 md:grid-cols-4 lg:w-[80%]">
         <SubService
@@ -49,7 +49,7 @@ const SubService = ({ icon, text, bg }: SubServiceProps) => {
           className="pointer-events-none"
         />
       </div>
-      <h1 className="w-28 text-center">{text}</h1>
+      <h1 className="max-w-28 text-center">{text}</h1>
     </div>
   );
 };

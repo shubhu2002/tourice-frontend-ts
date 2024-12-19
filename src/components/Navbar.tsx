@@ -1,20 +1,34 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { usePathname } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
-import { Menu, LogOut, CalendarCheck2, User } from "lucide-react";
+import { Menu, LogOut, CalendarCheck2 } from "lucide-react";
 
 import { DarkTheme } from "~/utils";
 import { NavMenus } from "~/constants";
 import { useAppStore } from "~/store";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const { data: session } = useSession();
   const pathname = usePathname();
+  const { push } = useRouter();
   const { setLoginModal } = useAppStore();
 
   const [showMenu, setShowMenu] = useState(false);
+
+  const handleLogout = async () => {
+    try {
+      void signOut({ redirect: false });
+    } catch (error: unknown) {
+      console.log(error);
+    } finally {
+      toast.success("Logout Successfully !");
+      void push("/");
+    }
+  };
 
   return (
     <header className="fixed left-1/2 top-5 z-50 flex h-[72px] w-[96%] -translate-x-1/2 items-center justify-between rounded-2xl bg-transparent shadow backdrop-blur-md">
@@ -24,7 +38,7 @@ const Navbar = () => {
           height={1000}
           src={"/logo_crop.png"}
           alt="logo"
-          className="ml-2 h-44 w-44 object-contain"
+          className="ml-2 h-40 w-40 object-contain"
         />
       </div>
       <nav
@@ -66,15 +80,15 @@ const Navbar = () => {
                   className="rounded-full border-2 border-white/90"
                 />
                 <div className="absolute right-0 top-10 z-[9999] flex min-w-32 flex-col items-center justify-center gap-1 rounded-lg bg-black/90 p-1 text-[14px] text-white opacity-0 backdrop-blur-lg transition-all duration-300 group-hover:opacity-100">
-                  <span className="flex w-full items-center justify-start gap-2 rounded-lg py-1.5 pl-2 hover:bg-white/15">
-                    <User size={16} /> Profile
-                  </span>
-                  <span className="flex w-full items-center justify-start gap-2 rounded-lg py-1.5 pl-2 hover:bg-white/15">
+                  <Link
+                    href={"/bookings"}
+                    className="flex w-full items-center justify-start gap-2 rounded-lg py-1.5 pl-2 hover:bg-white/15"
+                  >
                     <CalendarCheck2 size={16} /> Bookings
-                  </span>
+                  </Link>
                   <span
                     className="flex w-full items-center justify-start gap-2 rounded-lg py-1.5 pl-2 hover:bg-white/15"
-                    onClick={() => signOut({ redirect: false })}
+                    onClick={handleLogout}
                   >
                     <LogOut size={16} /> Logout
                   </span>

@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { Merriweather, Borel } from "next/font/google";
+import { Merriweather, Borel, Ubuntu } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 
 import { Footer, Navbar, Loader, Login } from "~/components";
@@ -15,6 +15,11 @@ const borel_font = Borel({
   weight: ["400"],
   variable: "--font-borel",
 });
+const ubuntu_font = Ubuntu({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
+  variable: "--font-ubuntu",
+});
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const { loading, loginModal } = useAppStore();
@@ -26,7 +31,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div
-        className={`min-h-screen w-full bg-yellow-50 text-black transition-all duration-150 ease-out dark:bg-[#121212] dark:text-lime-50 ${merriweather_font.className} ${borel_font.variable}`}
+        className={`min-h-screen w-full bg-yellow-50 text-black transition-all duration-150 ease-out dark:bg-[#121212] dark:text-lime-50 ${ubuntu_font.className} ${merriweather_font.variable} ${borel_font.variable}`}
       >
         {loading && <Loader />}
         {loginModal && <Login />}

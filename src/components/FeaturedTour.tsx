@@ -14,8 +14,8 @@ const FeaturedTour = () => {
         .then((res) => res.data.data),
   });
   return (
-    <section className="mb-12 w-full">
-      <h1 className="font-Borel my-6 mb-16 w-full text-center text-3xl md:text-3xl">
+    <section className="mb-20 w-full">
+      <h1 className="mb-16 w-full text-center text-3xl md:text-5xl">
         Popular Destinations
       </h1>
       {isLoading ? (

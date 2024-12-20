@@ -6,8 +6,9 @@ import { IndianRupee, Star } from "lucide-react";
 import Layout from "~/layout";
 import type { TourCardPops } from "~/types";
 import { apiInstance } from "~/utils";
-import { Booking, Confirmed, Loader } from "~/components";
+import { Booking, Confirmed } from "~/components";
 import { useAppStore } from "~/store";
+import { SkeletonLoading } from "~/components/shared/Skeleton-Loading";
 
 const TourDetail = () => {
   const {
@@ -17,7 +18,7 @@ const TourDetail = () => {
   const { confirmBooking } = useAppStore();
 
   const { data: tour, isLoading } = useQuery({
-    queryKey: ["getAllTourById"],
+    queryKey: ["getAllTourById", id],
     queryFn: async () =>
       apiInstance
         .get<{ data: TourCardPops }>(`/tour/search/id/${id as string}`)
@@ -27,20 +28,25 @@ const TourDetail = () => {
   return (
     <Layout>
       {confirmBooking && <Confirmed />}
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <main className="font-Poppins flex w-full flex-col gap-10 px-5 pb-10 pt-24 lg:flex-row lg:gap-20 lg:px-28">
-          <section className="flex w-full flex-col gap-4 lg:w-3/5 lg:gap-7">
+      <main className="font-Poppins flex w-full flex-col gap-10 px-5 pb-10 pt-24 lg:flex-row lg:gap-20 lg:px-28">
+        <section className="flex w-full flex-col gap-4 lg:w-3/5 lg:gap-7">
+          {isLoading ? (
+            <SkeletonLoading height={420} />
+          ) : (
             <Image
               width={1000}
               height={1000}
               src={tour?.photo ?? ""}
               alt="photo"
-              className="w-full rounded-lg"
+              className="h-full w-full rounded-lg object-contain"
             />
+          )}
+          {isLoading ? (
+            <SkeletonLoading height={180} />
+          ) : (
             <div className="flex w-full flex-col gap-2 rounded-lg border-[1px] border-[rgba(109,107,107,0.49)] p-4">
               <span className="text-xl">{tour?.title}</span>
+
               <div className="flex gap-5">
                 <span className="flex items-center gap-2 text-sm">
                   <Star size={18} fill="yellow" stroke="orange" />{" "}
@@ -66,12 +72,16 @@ const TourDetail = () => {
                 <p>No top places available for this tour.</p>
               )}
             </div>
-          </section>
+          )}
+        </section>
+        {isLoading ? (
+          <SkeletonLoading height={500} />
+        ) : (
           <section className="flex w-full flex-col items-center gap-5 lg:w-2/6">
             {tour && <Booking tour={tour} />}
           </section>
-        </main>
-      )}
+        )}
+      </main>
     </Layout>
   );
 };

@@ -4,7 +4,7 @@ import { ImageData } from "~/constants";
 const Header = ({ title }: { title: string }) => {
   return (
     <section className="relative mb-10 w-full">
-      <h1 className="font-borel absolute left-1/2 top-1/2 z-40 mt-8 -translate-x-1/2 -translate-y-1/2 text-center text-5xl tracking-widest text-lime-50">
+      <h1 className="absolute left-1/2 top-1/2 z-40 mt-8 w-full -translate-x-1/2 -translate-y-1/2 text-center font-borel text-4xl tracking-widest text-lime-50 md:text-5xl">
         {title}
       </h1>
       <Image

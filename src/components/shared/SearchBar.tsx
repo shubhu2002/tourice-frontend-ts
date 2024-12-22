@@ -3,7 +3,6 @@ import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 import { Bars } from "react-loader-spinner";
 import { MapPin, ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
 
 import { apiInstance } from "~/utils";
 import type { TourCardPops } from "~/types";
@@ -56,11 +55,8 @@ const SearchBar = () => {
   };
 
   return (
-    <motion.div
-      transition={{ duration: 0.5 }}
-      initial={{ width: "25%" }}
-      whileHover={{ width: "30%" }}
-      className="relative mt-4 flex w-5/6 flex-row justify-between rounded-lg border border-white/20 bg-white text-sm dark:bg-[rgba(0,0,0,0.8)] md:w-2/6"
+    <div
+      className="relative mt-4 flex w-[80%] flex-row justify-between rounded-lg border border-white/20 bg-white text-sm duration-500 hover:w-[90%] dark:bg-[rgba(0,0,0,0.8)] md:w-[25%] md:hover:w-[30%]"
       ref={modalRef}
     >
       <div className="flex w-full items-center gap-4 px-4">
@@ -116,7 +112,7 @@ const SearchBar = () => {
             </Link>
           ))}
       </div>
-    </motion.div>
+    </div>
   );
 };
 

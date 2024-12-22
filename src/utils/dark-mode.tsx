@@ -46,7 +46,7 @@ const DarkTheme = () => {
           viewBox="0 0 26 21"
           strokeWidth="1.5"
           stroke="#fde68a"
-          className="h-8 w-8"
+          className="h-6 w-6 md:h-8 md:w-8"
         >
           <path
             strokeLinecap="round"
@@ -61,7 +61,7 @@ const DarkTheme = () => {
           viewBox="0 0 26 21"
           strokeWidth="1.5"
           stroke="#f59e0b"
-          className="h-8 w-8"
+          className="h-6 w-6 md:h-8 md:w-8"
         >
           <path
             strokeLinecap="round"

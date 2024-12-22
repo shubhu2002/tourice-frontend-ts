@@ -9,7 +9,9 @@ const Offers = () => {
       className="mb-20 flex w-full flex-col items-center gap-7 bg-secondaryBG py-12"
       id="offer"
     >
-      <h1 className="mb-12 text-5xl font-bold">Get Exclusive Offers !!</h1>
+      <h1 className="mb-12 text-center text-[30px] font-bold md:text-[44px]">
+        Get Exclusive Offers !!
+      </h1>
       <div className="flex w-full flex-wrap justify-center gap-3 px-4 md:gap-10">
         {offerData.map((item) => {
           return (

@@ -7,16 +7,16 @@ import { ImageData, testimonialsData } from "~/constants";
 
 const Testimonials = () => {
   return (
-    <section className="pointer-events-none relative mb-20 flex w-full flex-col items-center pt-8">
+    <section className="pointer-events-none relative mb-20 flex w-full flex-col items-center pt-8 px-1">
       <Image
         width={1000}
         height={1000}
         src={ImageData.airplane}
         alt="tree"
-        className="absolute left-0 top-36 w-28 -rotate-[30deg] opacity-80 lg:-left-7 lg:top-0 lg:w-72"
+        className="absolute left-0 top-32 md:top-36 w-28 -rotate-[30deg] opacity-80 lg:-left-7 lg:top-0 lg:w-72"
       />
-      <h1 className="w-full text-center text-5xl">Our Happy Customers</h1>
-      <h1 className="mb-1 mt-4 px-2 text-center text-base">
+      <h1 className="w-full text-center text-[30px] md:text-[44px]">Our Happy Customers</h1>
+      <h1 className="mb-1 mt-3 px-2 text-center text-base">
         Some testimonials from those who go travelling using our services.
       </h1>
       <div className="mx-auto flex w-[85%] p-12 lg:w-[55%]">

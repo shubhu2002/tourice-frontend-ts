@@ -15,7 +15,7 @@ const FeaturedTour = () => {
   });
   return (
     <section className="mb-20 w-full">
-      <h1 className="mb-16 w-full text-center text-3xl md:text-5xl">
+      <h1 className="mb-16 w-full text-center text-[30px] md:text-[44px]">
         Popular Destinations
       </h1>
       {isLoading ? (
@@ -31,7 +31,7 @@ const FeaturedTour = () => {
           />
         </div>
       ) : (
-        <div className="mx-auto grid w-[90%] grid-cols-2 place-items-center gap-x-14 gap-y-10 px-5 lg:grid-cols-4">
+        <div className="mx-auto grid w-[90%] grid-cols-1 place-items-center gap-x-14 gap-y-10 px-5 md:grid-cols-3 lg:grid-cols-3">
           {featuredTours?.map((item, index) => {
             return <TourCard tour={item} key={index} />;
           })}

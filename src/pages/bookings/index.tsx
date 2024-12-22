@@ -73,7 +73,7 @@ export default function Home() {
           </div>
         )}
         {bookings?.length !== 0 ? (
-          <div className="mb-10 grid grid-cols-2 gap-6 px-6 md:px-14">
+          <div className="mb-10 grid gap-6 px-6 md:grid-cols-2 md:px-14">
             {bookings?.map((booking, index) => (
               <div
                 key={index}
@@ -85,21 +85,21 @@ export default function Home() {
                     alt={tourDetails[index].title}
                     width={1000}
                     height={1000}
-                    className="object-fit h-[380px] w-full rounded-3xl"
+                    className="object-fit h-[300px] w-full rounded-3xl md:h-[380px]"
                   />
                 )}
                 <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/50 to-black/80" />
-                <div className="absolute bottom-3 left-0 right-0 z-[99] flex w-[95%] flex-col items-center justify-self-center rounded-[28px] bg-black/80 p-3.5 font-sans text-white">
-                  <span className="w-full text-left text-sm font-bold text-white/60">
+                <div className="absolute bottom-3 left-0 right-0 z-[99] flex w-[95%] flex-col items-center justify-self-center rounded-[28px] bg-black/80 p-3.5 font-sans text-sm text-white md:text-base">
+                  <span className="w-full text-left text-xs font-bold text-white/60 md:text-sm">
                     {tourDetails[index]?.desc}
                   </span>
-                  <div className="mb-1.5 flex w-full items-center justify-between text-left text-2xl font-extrabold uppercase">
+                  <div className="my-1 flex w-full items-center justify-between text-left text-xl font-extrabold uppercase md:text-2xl">
                     {booking.tourName}
                     <span className="text-base font-bold">
                       ⭐{tourDetails[index]?.rating}
                     </span>
                   </div>
-                  <div className="flex w-full items-center gap-2 font-semibold text-white/80">
+                  <div className="mb-1 flex w-full items-center gap-2 font-semibold text-white/80">
                     <p>{booking.fullName}</p>{" "}
                     <span className="opacity-70">•</span>
                     <p>{booking.phone}</p>

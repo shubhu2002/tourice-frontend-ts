@@ -16,23 +16,6 @@
 .txt_field {
   transition: max-height 0.5s ease-in-out;
 }
-
-.overlay::after,
-.overlay::before {
-  content: "";
-  position: absolute;
-  top: 158px;
-  right: 0;
-  background-color: #d9f99d;
-  width: 30px;
-  height: 30px;
-}
-
-.overlay::after {
-  border-radius: 0 20px 0 0;
-  background-color: white;
-}
-
 .txt_field span::before {
   content: " ";
   position: absolute;
@@ -52,6 +35,34 @@
 .txt_field input:focus ~ span::before,
 .txt_field input:valid ~ span::before {
   width: 100%;
+}
+.txt_field2 {
+  transition: max-height 0.5s ease-in-out;
+}
+
+.txt_field2 input ~ label {
+  top: 2px;
+  width: 100%;
+}
+
+.txt_field2 input:focus ~ span::before,
+.txt_field2 input:valid ~ span::before {
+  width: 100%;
+}
+.overlay::after,
+.overlay::before {
+  content: "";
+  position: absolute;
+  top: 158px;
+  right: 0;
+  background-color: #d9f99d;
+  width: 30px;
+  height: 30px;
+}
+
+.overlay::after {
+  border-radius: 0 20px 0 0;
+  background-color: white;
 }
 
 .latestBook {

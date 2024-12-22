@@ -33,7 +33,7 @@ const Tour = () => {
               />
             </div>
           )}
-          <div className="mx-auto mt-10 grid w-[90%] grid-cols-2 place-items-center gap-x-14 gap-y-10 px-5 md:grid-cols-3 lg:grid-cols-4">
+          <div className="mx-auto mt-10 grid w-[90%] grid-cols-1 place-items-center gap-x-14 gap-y-10 px-5 md:grid-cols-2 lg:grid-cols-3">
             {tours?.map((item, index) => {
               return <TourCard tour={item} key={index} />;
             })}

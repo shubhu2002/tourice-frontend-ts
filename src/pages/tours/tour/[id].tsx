@@ -44,27 +44,37 @@ const TourDetail = () => {
           {isLoading ? (
             <SkeletonLoading height={180} />
           ) : (
-            <div className="flex w-full flex-col gap-2 rounded-lg border-[1px] border-[rgba(109,107,107,0.49)] p-4">
-              <span className="text-xl">{tour?.title}</span>
-
-              <div className="flex gap-5">
-                <span className="flex items-center gap-2 text-sm">
+            <div className="flex w-full flex-col gap-2 rounded-lg border-[1px] border-[rgba(109,107,107,0.49)] p-4 text-sm md:text-base">
+              <div className="flex justify-between text-xl font-semibold uppercase md:text-2xl">
+                <span>{tour?.title}</span>
+                <span className="flex items-center gap-2">
                   <Star size={18} fill="yellow" stroke="orange" />{" "}
                   {tour?.rating}
                 </span>
-                <span className="flex items-center gap-1 text-sm">
-                  <IndianRupee size={18} />
-                  {tour?.price} /- per person
-                </span>
               </div>
-              <h1 className="mt-4 text-lg">Description</h1>
-              <p className="text-sm">{tour?.desc}</p>
-              <h1 className="mt-4 text-lg">Top Places</h1>
-              {Array.isArray(tour?.topPlaces) && tour.topPlaces.length > 0 ? (
+
+              <span className="flex items-center gap-1">
+                <IndianRupee size={18} />
+                {tour?.price} /- per person
+              </span>
+              <h1 className="mt-4 text-lg text-white/80 md:text-xl">
+                Description
+              </h1>
+              <p className="">{tour?.desc}</p>
+              <h1 className="mt-4 text-lg text-white/80 md:text-xl">
+                Top Places
+              </h1>
+              {tour?.topPlaces ? (
                 <ul className="flex flex-wrap gap-2">
                   {tour.topPlaces.map((place, index) => (
-                    <li key={index} className="text-sm">
-                      {place} ||
+                    <li
+                      key={index}
+                      className="flex items-center gap-2 text-center"
+                    >
+                      {place}{" "}
+                      {tour.topPlaces.length - 1 > index && (
+                        <span className="text-white/40">•</span>
+                      )}
                     </li>
                   ))}
                 </ul>

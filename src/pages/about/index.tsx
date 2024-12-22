@@ -21,7 +21,9 @@ const About = () => {
             service, we&apos;re here to turn your travel dreams into reality.
           </p>
           <div>
-            <h1 className="pb-1 text-lg font-semibold">Who we are ? </h1>
+            <h1 className="pb-1 text-lg font-semibold text-white/80">
+              Who we are ?{" "}
+            </h1>
             <p>
               We are a team of avid travelers, wanderlust enthusiasts, and
               experienced professionals who are driven by the desire to provide
@@ -32,7 +34,9 @@ const About = () => {
             </p>
           </div>
           <div>
-            <h1 className="pb-1 text-lg font-semibold">Our Missions - </h1>
+            <h1 className="pb-1 text-lg font-semibold text-white/80">
+              Our Missions -{" "}
+            </h1>
             <p>
               Our mission is to redefine the way you experience travel. We aim
               to go beyond conventional itineraries, giving you the chance to
@@ -43,10 +47,12 @@ const About = () => {
             </p>
           </div>
           <div>
-            <h1 className="pb-1 text-lg font-semibold">What we Offer - </h1>
+            <h1 className="pb-1 text-lg font-semibold text-white/80">
+              What we Offer -{" "}
+            </h1>
             <ul className="flex list-disc flex-col gap-4 pl-4 pt-2 md:pl-8">
               <li>
-                <span className="text-base font-semibold">
+                <span className="text-base font-semibold text-white/60">
                   Tailored Itineraries :{" "}
                 </span>
                 We understand that no two travelers are alike, and that&apos;s
@@ -57,7 +63,7 @@ const About = () => {
                 covered.
               </li>
               <li>
-                <span className="text-base font-semibold">
+                <span className="text-base font-semibold text-white/60">
                   Expert Guidance :{" "}
                 </span>
                 Our travel experts are here to guide you every step of the way.
@@ -66,7 +72,7 @@ const About = () => {
                 you need for a smooth and enjoyable journey.
               </li>
               <li>
-                <span className="text-base font-semibold">
+                <span className="text-base font-semibold text-white/60">
                   Handpicked Accommodations :{" "}
                 </span>
                 We believe where you stay plays a pivotal role in your travel
@@ -75,7 +81,7 @@ const About = () => {
                 away from home no matter where you go.
               </li>
               <li>
-                <span className="text-base font-semibold">
+                <span className="text-base font-semibold text-white/60">
                   Unique Experiences :{" "}
                 </span>
                 We&apos;re all about creating moments that take your breath
@@ -85,7 +91,9 @@ const About = () => {
                 that you&apos;ll treasure forever.
               </li>
               <li>
-                <span className="text-base font-semibold">24/7 Support : </span>
+                <span className="text-base font-semibold text-white/60">
+                  24/7 Support :{" "}
+                </span>
                 Your safety and comfort are our top priorities. That&apos;s why
                 we provide round-the-clock customer support to address any
                 concerns or unexpected situations that might arise during your

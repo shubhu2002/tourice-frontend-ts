@@ -65,7 +65,7 @@ const Navbar = () => {
           <Image
             width={1000}
             height={1000}
-            src={"/logo_crop.png"}
+            src={"/logo.png"}
             alt="logo"
             className="-ml-2 h-32 w-32 object-contain md:ml-2 md:h-40 md:w-40"
           />

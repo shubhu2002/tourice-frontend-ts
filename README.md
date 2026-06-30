@@ -1,29 +1,125 @@
-# Create T3 App
+# Tourice - Tours & Travel Booking Platform
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+A modern travel booking web application where users can explore destinations, browse curated tour packages, and book trips seamlessly. Built with Next.js, TypeScript, and Tailwind CSS.
 
-## What's next? How do I make an app with this?
+**Live Demo:** [tourice-frontend-ts.vercel.app](https://tourice-frontend-ts.vercel.app/)
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+## Features
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+- **Tour Discovery** - Browse and search tour packages with real-time suggestions
+- **Holiday Categories** - Explore tours by theme: Honeymoon, Wild Escapes, Pilgrimage
+- **Booking System** - Authenticated booking flow with date selection, guest count, and fee calculation
+- **User Authentication** - Sign up and login via NextAuth.js with session management
+- **Booking History** - View and manage past bookings
+- **Responsive Design** - Mobile-first layout with smooth scroll and skeleton loading
+- **Dark Mode** - Toggle between light and dark themes
+- **Animations** - Smooth transitions and carousels powered by Framer Motion and Swiper
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+## Tech Stack
 
-## Learn More
+| Category | Technologies |
+|---|---|
+| Framework | Next.js 15, React 18, TypeScript |
+| Styling | Tailwind CSS, Framer Motion |
+| State Management | Zustand, TanStack React Query |
+| Authentication | NextAuth.js |
+| HTTP Client | Axios |
+| UI Components | Swiper, Lucide Icons, React Hot Toast, React Loading Skeleton |
+| Validation | Zod, @t3-oss/env-nextjs |
+| Smooth Scroll | Lenis |
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+## Getting Started
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+### Prerequisites
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+- Node.js 18+
+- pnpm
 
-## How do I deploy this?
+### Installation
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+```bash
+# Clone the repository
+git clone https://github.com/shubhu2002/tourice-frontend-ts.git
+cd tourice-frontend-ts
+
+# Install dependencies
+pnpm install
+
+# Set up environment variables
+cp .env.example .env
+```
+
+Add the required environment variable:
+
+```env
+NEXT_PUBLIC_JWT_SECRET=your_jwt_secret
+```
+
+### Development
+
+```bash
+pnpm dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+### Build
+
+```bash
+pnpm build
+pnpm start
+```
+
+## Scripts
+
+| Command | Description |
+|---|---|
+| `pnpm dev` | Start dev server with Turbopack |
+| `pnpm build` | Create production build |
+| `pnpm start` | Run production server |
+| `pnpm lint` | Run ESLint |
+| `pnpm lint:fix` | Auto-fix lint issues |
+| `pnpm typecheck` | Run TypeScript type checking |
+| `pnpm check` | Lint + typecheck combined |
+| `pnpm format:write` | Format code with Prettier |
+| `pnpm format:check` | Check code formatting |
+
+## Project Structure
+
+```
+src/
+├── pages/            # Next.js pages & API routes
+│   ├── index.tsx     # Home page
+│   ├── tours/        # Tour listing & detail pages
+│   ├── bookings/     # User bookings page
+│   ├── contact/      # Contact page
+│   ├── about/        # About page
+│   └── api/auth/     # NextAuth API route
+├── components/       # React components
+│   └── shared/       # Reusable components (Tour-Card, SearchBar, Booking, Login)
+├── layout/           # App layout wrapper
+├── store/            # Zustand state store
+├── types/            # TypeScript type definitions
+├── utils/            # API client, helpers, dark mode
+├── constants/        # Static data & image URLs
+└── styles/           # Global CSS
+```
+
+## API
+
+The frontend connects to a REST API backend:
+
+**Base URL:** `https://tourice-backend-ts.onrender.com/api/v1`
+
+| Endpoint | Method | Description |
+|---|---|---|
+| `/tour/all` | GET | Fetch all tours |
+| `/tour/search/id/:id` | GET | Get tour by ID |
+| `/booking/search/:username` | GET | Get user bookings |
+| `/booking/create` | POST | Create a booking |
+| `/auth/register` | POST | Register a new user |
+| `/auth/login` | POST | User login |
+
+## Deployment
+
+Deployed on [Vercel](https://vercel.com). Push to `main` triggers automatic deployments.

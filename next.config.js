@@ -21,6 +21,7 @@ const config = {
     remotePatterns: [
       { hostname: "firebasestorage.googleapis.com" },
       { hostname: "avatar.iran.liara.run" },
+	  { hostname: "qniqjhhdtnjercjspgst.supabase.co"}
     ],
   },
   transpilePackages: ["geist"],

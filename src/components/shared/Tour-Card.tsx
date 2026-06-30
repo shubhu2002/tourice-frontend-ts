@@ -16,7 +16,7 @@ const TourCard = ({ tour }: { tour: TourCardPops }) => {
       <Link href={`/tours/tour/${tour._id}`}>
         <div className="mb-3 h-full w-full overflow-hidden rounded-lg md:h-44 md:w-full">
           <Image
-            src={tour.photo}
+            src={tour.photo.trim()}
             width={1000}
             height={1000}
             alt="place"
